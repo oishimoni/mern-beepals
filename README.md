@@ -1,70 +1,139 @@
-# Getting Started with Create React App
+# MERN BeePals
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A MERN stack fitness tracking application where users can manage their profiles, track exercises, and connect with other fitness enthusiasts.
 
-## Available Scripts
+## 🏗️ Project Structure
 
-In the project directory, you can run:
+```
+mern-beepals/
+├── backend/              # Node.js/Express API server
+│   ├── models/          # Mongoose data models
+│   │   ├── user.model.js
+│   │   ├── Profile.js
+│   │   └── exercise.model.js
+│   ├── routes/          # Express API routes
+│   │   ├── auth.js      # Authentication routes
+│   │   ├── profile.js   # Profile management routes
+│   │   ├── exercises.js # Exercise tracking routes
+│   │   └── users.js     # User management routes
+│   ├── server.js        # Main server file
+│   └── package.json     # Backend dependencies
+├── client/              # React frontend application
+│   ├── src/
+│   │   ├── pages/       # React components/pages
+│   │   │   ├── Login.js
+│   │   │   ├── Profile.js
+│   │   │   └── Signup.js
+│   │   ├── utils/       # Utility functions
+│   │   │   └── axios.js # API client configuration
+│   │   └── App.js       # Main React component
+│   ├── public/          # Static assets
+│   └── package.json     # Frontend dependencies
+└── package.json         # Root project scripts
+```
 
-### `npm start`
+## 🚀 Quick Start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB Atlas account
+- Git
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installation
 
-### `npm test`
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd mern-beepals
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install all dependencies**
+   ```bash
+   npm i
+   ```
 
-### `npm run build`
+3. **Environment Setup**
+   Create a `.env` file in the `backend/` directory:
+   ```env
+   ATLAS_URI=your_mongodb_connection_string
+   PORT=5000
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **Run the application**
+   ```bash
+   # Development mode (both frontend and backend)
+   npm run dev
+   
+   # Or run separately:
+   npm run start #change directory to backend   # Backend only (port 5000)
+   npm run start #change directory to client    # Frontend only (port 3000)
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🔧 Available Scripts
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `npm run dev` - Run both frontend and backend concurrently
+- `npm run server` - Run backend server only
+- `npm run client` - Run frontend development server only
+- `npm run build` - Build frontend for production
+- `npm run install-deps` - Install dependencies for all projects
 
-### `npm run eject`
+## 🎯 Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **User Authentication**: Register and login with email/password
+- **Profile Management**: Create and update user profiles with bio, location, age
+- **Exercise Tracking**: Log and track fitness exercises
+- **Responsive Design**: Mobile-friendly interface
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛠️ Technology Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Backend
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB with Mongoose ODM
+- **Authentication**: JWT tokens with bcryptjs
+- **CORS**: Enabled for frontend communication
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Frontend
+- **Framework**: React 19.1.1
+- **Build Tool**: Create React App
+- **HTTP Client**: Axios
+- **Testing**: Jest & React Testing Library
 
-## Learn More
+## 📡 API Endpoints
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Authentication
+- `POST /api/auth/signup` - User registration
+- `POST /api/auth/login` - User login
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Profile Management
+- `GET /api/profile` - Get user profile
+- `POST /api/profile/create` - Create user profile
+- `PUT /api/profile/update` - Update user profile
+- `DELETE /api/profile/delete` - Delete user profile
 
-### Code Splitting
+### Exercise Tracking
+- `GET /api/exercises` - Get all exercises
+- `POST /api/exercises/add` - Add new exercise
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### User Management
+- `GET /api/users/profile` - Get current user info
+- `PUT /api/users/update` - Update user information
 
-### Analyzing the Bundle Size
+## 🔐 Authentication Flow
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. User registers/logs in through frontend
+2. Backend validates credentials and returns JWT token
+3. Frontend stores token in localStorage
+4. Protected routes require Authorization header: `Bearer <token>`
 
-### Making a Progressive Web App
+## 🤝 Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-### Advanced Configuration
+## 📄 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License.
